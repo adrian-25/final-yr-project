@@ -35,7 +35,7 @@ async def download_agent(agent_id: str, current_user: dict = Depends(get_current
         # Generate dynamic .env file with USER_ID and AGENT_ID.
         # AGENT_TOKEN is written back to this file by the agent on first registration.
         env_content = (
-            f"BACKEND_URL=http://localhost:8000\n"
+            f"BACKEND_URL=https://final-yr-project-pq96.onrender.com\n"
             f"USER_ID={user_id}\n"
             f"AGENT_ID={agent_id}\n"
             f"AGENT_TOKEN=\n"
