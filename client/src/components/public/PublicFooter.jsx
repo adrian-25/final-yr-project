@@ -32,7 +32,7 @@ export const PublicFooter = () => {
             </p>
             <div className="flex items-center gap-3 mt-6">
               <a
-                href="https://github.com"
+                href="https://github.com/adrian-25/final-yr-project"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 rounded-lg border border-border-bright/30 text-text_muted hover:text-white hover:border-primary/40 transition-colors"
