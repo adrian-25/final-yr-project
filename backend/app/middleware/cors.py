@@ -1,12 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from app.config import settings
 
 def setup_cors(app: FastAPI):
-    origins = [
-        "http://localhost:5173",
-        "http://localhost:3000",
-        "https://final-yr-project-zeta.vercel.app",
-    ]
+    origins = [origin.strip() for origin in settings.CORS_ORIGINS.split(",") if origin.strip()]
     app.add_middleware(
         CORSMiddleware,
         allow_origins=origins,

@@ -34,8 +34,12 @@ async def download_agent(agent_id: str, current_user: dict = Depends(get_current
                 
         # Generate dynamic .env file with USER_ID and AGENT_ID.
         # AGENT_TOKEN is written back to this file by the agent on first registration.
+        backend_url = settings.PUBLIC_API_URL.rstrip("/")
+        if not backend_url:
+            raise HTTPException(status_code=500, detail="PUBLIC_API_URL is not configured")
+
         env_content = (
-            f"BACKEND_URL=https://final-yr-project-pq96.onrender.com\n"
+            f"BACKEND_URL={backend_url}\n"
             f"USER_ID={user_id}\n"
             f"AGENT_ID={agent_id}\n"
             f"AGENT_TOKEN=\n"

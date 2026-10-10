@@ -38,7 +38,10 @@ export const Register = () => {
       toast.success('Account created. Welcome to ARCDIS.');
       navigate('/dashboard');
     } catch (err) {
-      const msg = err?.response?.data?.detail || 'Registration failed. This email may already be in use.';
+      const msg = err?.response?.data?.detail
+        || (err?.request
+          ? 'Unable to reach the ARCDIS API. Please try again in a moment.'
+          : 'Registration failed. Please try again.');
       setError(typeof msg === 'string' ? msg : JSON.stringify(msg));
     } finally {
       setIsLoading(false);

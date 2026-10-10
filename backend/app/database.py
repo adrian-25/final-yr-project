@@ -1,4 +1,5 @@
 from motor.motor_asyncio import AsyncIOMotorClient
+from mongomock_motor import AsyncMongoMockClient
 from app.config import settings
 
 class Database:
@@ -7,7 +8,11 @@ class Database:
 db = Database()
 
 async def connect_to_mongo():
-    db.client = AsyncIOMotorClient(settings.MONGODB_URL)
+    db.client = (
+        AsyncMongoMockClient()
+        if settings.USE_IN_MEMORY_DB
+        else AsyncIOMotorClient(settings.MONGODB_URL)
+    )
     # Ensure indexes on startup
     database = db.client[settings.DATABASE_NAME]
     
