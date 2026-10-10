@@ -1,4 +1,10 @@
-export const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
+const LOCAL_API_BASE_URL = 'http://localhost:8000/api';
+const DEPLOYED_API_BASE_URL = 'https://arcdis-api.onrender.com/api';
+
+// A VITE_API_URL value always takes precedence. The deployed fallback keeps the
+// public portfolio site usable even when its hosting dashboard has no env vars.
+export const API_BASE_URL = import.meta.env.VITE_API_URL
+  || (import.meta.env.PROD ? DEPLOYED_API_BASE_URL : LOCAL_API_BASE_URL);
 
 export const SEVERITY_LEVELS = {
   CRITICAL: { label: 'Critical', color: 'text-red-400', bg: 'bg-red-500/10', border: 'border-red-500/30', dot: 'bg-red-400' },

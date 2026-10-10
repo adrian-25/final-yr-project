@@ -4,6 +4,7 @@ import {
   RefreshCw, ChevronRight, AlertCircle, Loader2
 } from 'lucide-react';
 import toast from 'react-hot-toast';
+import { API_BASE_URL } from '../utils/constants';
 
 function CodeBlock({ code, lang = 'bash' }) {
   const handleCopy = () => {
@@ -55,8 +56,7 @@ export const DownloadAgent = () => {
     setIsDownloading(true);
     try {
       const token = localStorage.getItem('token');
-      const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
-      const response = await fetch(`${baseUrl}/agents/download?agent_id=${agentId}`, {
+      const response = await fetch(`${API_BASE_URL}/agents/download?agent_id=${agentId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (!response.ok) throw new Error('Download failed');
